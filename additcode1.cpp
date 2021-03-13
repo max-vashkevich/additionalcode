@@ -42,6 +42,18 @@ typedef long double ldouble;
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include <cstdlib>
+#include <cstddef>
+#include <cctype>
+#include <vector>
+#include <string>
+#include <iterator>
+#include <set>
+#include <map>
+#include <bitset>
+#include <algorithm>
+#include <utility>
 
 using namespace std;
 
