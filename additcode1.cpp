@@ -9,11 +9,7 @@
 #pragma GCC target("sse4")
 #endif // __GNUC__
 
-#if defined(DEBUG)
-#undef DEBUG
-#endif // DEBUG
-
-#define DELIVERY
+// #define DELIVERY
 
 #define EOL 		        '\n'
 #define EOW		      	' '
@@ -39,7 +35,13 @@
                                 OPEN_FILES
 #define END_OF_THE_PROGRAM      CLOSE_FILES;                                                                                       \
                                 return EXIT_SUCCESS
-#define IOL_PARAMS              ifstream& fin, ofstream& fout, ofstream& flog
+#if !defined(DELIVERY)
+        #define IOL_PARAMS              ifstream& fin, ofstream& fout, ofstream& flog
+        #define IOL_PARAMS_TO_FUNC      fin, fout, flog
+#else
+        #define IOL_PARAMS              ifstream& in, ofstream& fout
+        #define IOL_PARAMS_TO_FUNC      fin, fout
+#endif // !DELIVERY
 
 typedef long long llong;
 typedef long double ldouble;
@@ -60,6 +62,7 @@ typedef long double ldouble;
 #include <algorithm>
 #include <utility>
 #include <numeric>
+#include <iomanip>
 
 using namespace std;
 
@@ -67,6 +70,6 @@ int main() {
         BEGIN_OF_THE_PROGRAM;
 
         // write code here
-
+        
         END_OF_THE_PROGRAM;
 }
