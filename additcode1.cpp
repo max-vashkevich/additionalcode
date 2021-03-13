@@ -1,55 +1,56 @@
-#ifdef __GNUC__
+#if defined(__GNUC__)
 #pragma GCC optimize("Ofast")
-#pragma GCC target("avx,avx2,fma")
+#pragma GCC target("avx")
+#pragma GCC target("avx2")
+#pragma GCC target("fma")
+#pragma GCC target("sse")
+#pragma GCC target("sse2")
+#pragma GCC target("sse3")
+#pragma GCC target("sse4")
 #endif // __GNUC__
 
-#ifdef DEBUG
+#if defined(DEBUG)
 #undef DEBUG
 #endif // DEBUG
 
 #define DEBUG
+//#undef DEBUG
+#define DELIVERY
+#undef DELIVERY
 
-#define EOL '\n'
-#define EOW ' '
-#define MAKE_STDIO_FASTER ios_base::sync_with_stdio(false); 			\
-			  cin.tie(NULL);
-#define elif else if
-// "fast for" is just a while XD
-#define FAST_FOR(varName, startVal, cond) { llong varName = startVal;		\
-					  while (cond)
-#define BEGIN_FAST_FOR {
-#define END_FAST_FOR(doAfter) doAfter;						\
-			      } }
-#define ALL(cont) (cont).begin(), (cont).end()
+#define EOL 		        '\n'
+#define EOW		      	' '
+#define UNSYNC_CSTDIO_CPPSTDIO 	ios_base::sync_with_stdio(false)
+#define UNTIE_STDIN_STDOUT 	cin.tie(NULL); 	                                                                                  \
+				cout.tie(NULL)
+#define ACCELERATE_STDIO        UNSYNC_CSTDIO_CPPSTDIO;                                                                           \
+			        UNTIE_STDIN_STDOUT
+#define elif 		      	else if
+#define ALL(cont) 	      	(cont).begin(), (cont).end()
+#if !defined(DELIVERY)
+        #define OPEN_FILES	ifstream fin("/Users/maximvashkevich/Documents/CPlusPlusProjects/TestProjects/test3/input.txt");  \
+			        ofstream fout("/Users/maximvashkevich/Documents/CPlusPlusProjects/TestProjects/test3/output.txt")
+#else
+        #define OPEN_FILES      ifstream fin("input.txt");                                                                        \
+                                ofstream fout("output.txt");
+#endif // !DELIVERY
+#define CLOSE_FILES		fin.close();	                                                                                  \
+			        fout.close();
 
-using llong = long long;
-using ldouble = long double;
+typedef long long llong;
+typedef long double ldouble;
 
 #include <iostream>
-#include <algorithm>
-#include <utility>
-#include <string>
-#include <vector>
-#include <set>
-#include <map>
-#include <stack>
-#include <queue>
-#include <deque>
-#include <numeric>
-#include <climits>
-#include <cctype>
-#include <bitset>
-#include <cmath>
-#include <cstddef>
-#include <cstdlib>
-#include <functional>
-#include <regex>
-#include <tuple>
+#include <fstream>
 
 using namespace std;
 
 int main() {
-	MAKE_STDIO_FASTER;
-	// write code here
-	return 0;
+        ACCELERATE_STDIO;
+        OPEN_FILES;
+        
+        // write code here
+
+        CLOSE_FILES;
+	return EXIT_SUCCESS;
 }
