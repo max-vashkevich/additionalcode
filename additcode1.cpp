@@ -9,44 +9,48 @@
 #pragma GCC target("sse4")
 #endif // __GNUC__
 
-// #define DELIVERY
+#define FILE_IO
 
-#define EOL 		        '\n'
-#define EOW		      	' '
-#define UNSYNC_CSTDIO_CPPSTDIO 	ios_base::sync_with_stdio(false)
-#define UNTIE_STDIN_STDOUT 	cin.tie(NULL); 	                                                                                   \
-				cout.tie(NULL)
-#define ACCELERATE_STDIO        UNSYNC_CSTDIO_CPPSTDIO;                                                                            \
-			        UNTIE_STDIN_STDOUT
-#define elif 		      	else if
-#define ALL(cont) 	      	(cont).begin(), (cont).end()
-#if !defined(DELIVERY)
-        #define OPEN_FILES	ifstream fin("/Users/maximvashkevich/Documents/CPlusPlusProjects/TestProjects/test3/input.txt");   \
-			        ofstream fout("/Users/maximvashkevich/Documents/CPlusPlusProjects/TestProjects/test3/output.txt"); \
-                                ofstream flog("/Users/maximvashkevich/Documents/CPlusPlusProjects/TestProjects/test3/log.txt")
+#define EOL 		                '\n'
+#define EOW		      	        ' '
+#define UNSYNC_CSTDIO_CPPSTDIO 	        ios_base::sync_with_stdio(false)
+#define UNTIE_STDIN_STDOUT 	        cin.tie(NULL); 	                                                                                   \
+					cout.tie(NULL)
+#define ACCELERATE_STDIO                UNSYNC_CSTDIO_CPPSTDIO;                                                                            \
+					UNTIE_STDIN_STDOUT
+#define elif 		      	        else if
+#define ALL(cont) 	      	        (cont).begin(), (cont).end()
+#define unless(cond)			if (!cond)
+#if defined(FILE_IO)
+#define OPEN_FILES                      ifstream fin("input.txt");                                                                         \
+					ofstream fout("output.txt");                                                                       \
+                                        ofstream flog("log.txt");
+#define CLOSE_FILES		        fin.close();	                                                                                   \
+					fout.close();                                                                                      \
+                                        flog.close();
 #else
-        #define OPEN_FILES      ifstream fin("input.txt");                                                                         \
-                                ofstream fout("output.txt");
-#endif // !DELIVERY
-#define CLOSE_FILES		fin.close();	                                                                                   \
-			        fout.close();
-
-#define BEGIN_OF_THE_PROGRAM    ACCELERATE_STDIO;                                                                                  \
-                                OPEN_FILES
-#define END_OF_THE_PROGRAM      CLOSE_FILES;                                                                                       \
-                                return EXIT_SUCCESS
-#if !defined(DELIVERY)
-        #define IOL_PARAMS              ifstream& fin, ofstream& fout, ofstream& flog
-        #define IOL_PARAMS_TO_FUNC      fin, fout, flog
+// empty defines
+#define OPEN_FILES
+#define CLOSE_FILES
+#endif // FILE_IO
+#define BEGINNING_OF_THE_PROGRAM        ACCELERATE_STDIO;                                                                                  \
+					OPEN_FILES
+#define ENDING_OF_THE_PROGRAM           CLOSE_FILES;                                                                                       \
+					return EXIT_SUCCESS
+#if defined(FILE_IO)
+#define IOL_PARAMS                      ifstream& fin, ofstream& fout, ofstream& flog
+#define IOL_PARAMS_TO_FUNC              fin, fout, flog
 #else
-        #define IOL_PARAMS              ifstream& in, ofstream& fout
-        #define IOL_PARAMS_TO_FUNC      fin, fout
-#endif // !DELIVERY
+// empty defines
+#define IOL_PARAMS
+#define IOL_PARAMS_TO_FUNC
+#endif // FILE_IO
 
 typedef long long llong;
 typedef long double ldouble;
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <cmath>
 #include <cstdlib>
@@ -55,21 +59,21 @@ typedef long double ldouble;
 #include <cstring>
 #include <vector>
 #include <string>
-#include <iterator>
 #include <set>
 #include <map>
 #include <bitset>
+#include <iterator>
 #include <algorithm>
 #include <utility>
 #include <numeric>
-#include <iomanip>
+#include <cassert>
 
 using namespace std;
 
 int main() {
-        BEGIN_OF_THE_PROGRAM;
-
-        // write code here
+	BEGINNING_OF_THE_PROGRAM;
         
-        END_OF_THE_PROGRAM;
+
+ 
+	ENDING_OF_THE_PROGRAM;
 }
