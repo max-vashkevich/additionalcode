@@ -8,9 +8,10 @@
 #pragma GCC target("sse3")
 #pragma GCC target("sse4")
 #endif // __GNUC__
-
+ 
 #define FILE_IO
-
+#undef  FILE_IO
+ 
 #define EOL 		                '\n'
 #define EOW		      	        ' '
 #define UNSYNC_CSTDIO_CPPSTDIO 	        ios_base::sync_with_stdio(false)
@@ -24,13 +25,13 @@
 #if defined(FILE_IO)
 #define OPEN_FILES                      ifstream fin("input.txt");                                                                         \
 					ofstream fout("output.txt");                                                                       \
-					ofstream flog("log.txt");
+					ofstream flog("log.txt")
 #define CLOSE_FILES		        fin.close();	                                                                                   \
 					fout.close();                                                                                      \
-					flog.close();
+					flog.close()
 #else
 // empty defines
-#define OPEN_FILES  			void* _ = 0x0;
+#define OPEN_FILES  			int _ = NAN
 #define CLOSE_FILES
 #endif // FILE_IO
 #define BEGINNING_OF_THE_PROGRAM        ACCELERATE_STDIO;                                                                                  \
@@ -41,14 +42,13 @@
 #define IOL_PARAMS                      ifstream& fin, ofstream& fout, ofstream& flog
 #define IOL_PARAMS_TO_FUNC              fin, fout, flog
 #else
-// empty defines
-#define IOL_PARAMS void* _
-#define IOL_PARAMS_TO_FUNC _
+#define IOL_PARAMS 			int _
+#define IOL_PARAMS_TO_FUNC 		_
 #endif // FILE_IO
-
+ 
 typedef long long llong;
 typedef long double ldouble;
-
+ 
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -57,6 +57,8 @@ typedef long double ldouble;
 #include <cstddef>
 #include <cctype>
 #include <cstring>
+#include <climits>
+#include <cassert>
 #include <vector>
 #include <string>
 #include <set>
@@ -66,14 +68,13 @@ typedef long double ldouble;
 #include <algorithm>
 #include <utility>
 #include <numeric>
-#include <cassert>
 
 using namespace std;
 
 int main() {
 	BEGINNING_OF_THE_PROGRAM;
 
-	// write code here
-
+	// write code here∫
+	
 	ENDING_OF_THE_PROGRAM;
 }
