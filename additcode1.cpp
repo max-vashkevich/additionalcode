@@ -1,28 +1,35 @@
-#if defined(__GNUC__)
-#pragma GCC optimize("Ofast")
-#pragma GCC target("avx")
-#pragma GCC target("avx2")
-#pragma GCC target("fma")
-#pragma GCC target("sse")
-#pragma GCC target("sse2")
-#pragma GCC target("sse3")
-#pragma GCC target("sse4")
-#endif // __GNUC__
- 
+#define ERR1
+#undef  ERR1
+
+#if defined(__GNUC__) && !defined(ERR1)
+#pragma GCC optimize ("Ofast")
+#pragma GCC target   ("avx2")
+#pragma GCC target   ("fma")
+#pragma GCC target   ("sse4")
+#else
+#pragma GCC optimize ("Ofast")
+#pragma GCC target   ("sse4")
+#endif // __GNUC__ && !ERR1
+
 #define FILE_IO
 #undef  FILE_IO
- 
+
 #define EOL 		                '\n'
+#define FEOL                            endl
 #define EOW		      	        ' '
 #define UNSYNC_CSTDIO_CPPSTDIO 	        ios_base::sync_with_stdio(false)
 #define UNTIE_STDIN_STDOUT 	        cin.tie(NULL); 	                                                                                   \
 					cout.tie(NULL)
+#ifndef FILE_IO
 #define ACCELERATE_STDIO                UNSYNC_CSTDIO_CPPSTDIO;                                                                            \
 					UNTIE_STDIN_STDOUT
+#else
+#define ACCELERATE_STDIO
+#endif // !FILE_IO
 #define elif 		      	        else if
 #define ALL(cont) 	      	        (cont).begin(), (cont).end()
 #define unless(cond)			if (!(cond))
-#if defined(FILE_IO)
+#ifdef FILE_IO
 #define OPEN_FILES                      ifstream fin("input.txt");                                                                         \
 					ofstream fout("output.txt");                                                                       \
 					ofstream flog("log.txt")
@@ -30,28 +37,30 @@
 					fout.close();                                                                                      \
 					flog.close()
 #else
-// empty defines
-#define OPEN_FILES  			int _ = NAN
+#define OPEN_FILES  			char _ = 0
 #define CLOSE_FILES
 #endif // FILE_IO
 #define BEGINNING_OF_THE_PROGRAM        ACCELERATE_STDIO;                                                                                  \
 					OPEN_FILES
 #define ENDING_OF_THE_PROGRAM           CLOSE_FILES;                                                                                       \
 					return EXIT_SUCCESS
-#if defined(FILE_IO)
+#ifdef FILE_IO
 #define IOL_PARAMS                      ifstream& fin, ofstream& fout, ofstream& flog
 #define IOL_PARAMS_TO_FUNC              fin, fout, flog
 #else
-#define IOL_PARAMS 			int _
+#define IOL_PARAMS 			char _
 #define IOL_PARAMS_TO_FUNC 		_
 #endif // FILE_IO
- 
+
 typedef long long llong;
 typedef long double ldouble;
- 
+
+#ifndef FILE_IO
 #include <iostream>
-#include <iomanip>
+#else
 #include <fstream>
+#endif // !FILE_IO
+#include <iomanip>
 #include <cmath>
 #include <cstdlib>
 #include <cstddef>
@@ -71,10 +80,11 @@ typedef long double ldouble;
 
 using namespace std;
 
-int main() {
+int
+main() {
 	BEGINNING_OF_THE_PROGRAM;
 
-	// write code here∫
+        // write code here
 	
 	ENDING_OF_THE_PROGRAM;
 }
